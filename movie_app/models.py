@@ -26,8 +26,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
     duration = models.FloatField(default=0)
-    director = models.ForeignKey(Director, on_delete=models.CASCADE, default='', related_name='movie_director',
-                                 null=True, blank=True)
+    director = models.ForeignKey(Director, on_delete=models.CASCADE, default='', related_name='movie_director',)
 
     @property
     def rating(self):

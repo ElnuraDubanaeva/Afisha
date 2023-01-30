@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'Afisha_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '@Dubanaeva2004',
+        'NAME': 'afisha',
+        'USER': 'admin2',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '5432',
     }

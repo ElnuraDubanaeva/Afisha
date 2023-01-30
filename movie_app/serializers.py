@@ -15,12 +15,25 @@ class MovieSerializer(serializers.ModelSerializer):
         return instance.director.name
 
 
+class ReviewDetailSerializer(serializers.ModelSerializer):
+    movie = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Review
+        fields = 'id text movie '.split()
+
+    def get_movie(self, instance):
+        return instance.movie.title
+
+
 class MovieDetailSerializer(serializers.ModelSerializer):
     director = serializers.SerializerMethodField()
+    review = Review.objects.all()
+    movie_review = ReviewDetailSerializer(many=True)
 
     class Meta:
         model = Movie
-        fields = 'id title description duration director movie_review rating'.split()
+        fields = 'id title description duration director movie_review rating '.split()
 
     def get_director(self, instance):
         return instance.director.name
@@ -33,7 +46,7 @@ class DirectorSerializer(serializers.ModelSerializer):
         model = Director
         fields = 'id name count movie_director'.split()
 
-    def get_movie(self, instance):
+    def get_movie_director(self, instance):
         return instance.movie.title
 
 
@@ -48,18 +61,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = 'id movie'.split()
-
-    def get_movie(self, instance):
-        return instance.movie.title
-
-
-class ReviewDetailSerializer(serializers.ModelSerializer):
-    movie = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Review
-        fields = 'id text movie '.split()
+        fields = 'id movie text'.split()
 
     def get_movie(self, instance):
         return instance.movie.title
