@@ -38,9 +38,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'movie_app',
     'django_filters',
+    'rest_framework.authtoken',
+    'profiles'
 ]
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

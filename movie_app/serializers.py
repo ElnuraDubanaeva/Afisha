@@ -98,3 +98,11 @@ class ReviewValidateSerializer(serializers.Serializer):
         except Movie.DoesNotExist:
             raise ValidationError(f'Movie with {movie_id} does not exists!')
         return movie_id
+
+    # def validate_tags(self, tags):
+    #     len_ =
+    #     tags_id = [i[0] for i in Tag.objects.all().values_list('id')]
+    #     for t in tags:
+    #         if t not in tags_id:
+    #             raise ValidationError(f'Tag with ({t}) does not exists!')
+    #     return tags
