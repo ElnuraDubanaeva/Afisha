@@ -1,13 +1,11 @@
-
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
 urlpatterns = [
-    path('movies/', views.movie_all_view),
-    path('movies/<int:id_>', views.movie_detailed_view),
-    path('directors/', views.director_all_view),
-    path('directors/<int:id_>', views.director_detail_view),
-    path('reviews/', views.review_all_view),
-    path('reviews/<int:id_>', views.review_detail_view),
-    path('movies/reviews',views.movie_review_view)
+    path('movies/', views.MovieAllViewSet.as_view({'get':'list','post':'create'})),
+    path('movies/<int:id>', views.MovieDetailViewSet.as_view({'get':'retrieve','put':'update','delete':'destroy'})),
+    path('directors/', views.DirectorAllViewSet.as_view({'get':'list','post':'create'})),
+    path('directors/<int:id>', views.DirectorDetailViewSet.as_view({'get':'retrieve','put':'update','delete':'destroy'})),
+    path('reviews/', views.ReviewAllViewSet.as_view({'get':'list','post':'create'})),
+    path('reviews/<int:id>', views.ReviewDetailViewSet.as_view({'get':'retrieve','put':'update','delete':'destroy'})),
+    path('movies/reviews',views.MovieReviewViewSet.as_view({'get':'list'}))
 ]
